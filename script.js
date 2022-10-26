@@ -12,23 +12,24 @@ function displayCoffeeList(coffeeList){
     coffeContainer.innerHTML = ''
     coffeeList.map(coffee => {
     const card = document.createElement('div')
-    const img = document.createElement('img')
+    // const img = document.createElement('img')
     const title  = document.createElement('h3')
     const description = document.createElement('p')
     title.appendChild(document.createTextNode(coffee.title))
     description.appendChild(document.createTextNode(coffee.description))
-    img.appendChild(document.createTextNode(coffee.img))
+    // img.appendChild(document.createTextNode(coffee.img))
     card.appendChild(title)
     card.appendChild(description)
-    card.appendChild(img)
+    // card.appendChild(img)
     coffeContainer.appendChild(card)
     })
 }
 
 function getCoffee(temp){
+    setLoading()
     fetch(`https://api.sampleapis.com/coffee/${temp}`)
     .then(response => response.json())
-    .then(coffeeList => console.log(coffeeList))
+    .then(displayCoffeeList)
     .catch(console.error) //TODO: display error for user
 }
 
